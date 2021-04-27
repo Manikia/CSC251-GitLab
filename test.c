@@ -205,7 +205,8 @@ int main(int argc, char *argv[])
 		{
 			while (choice != 99)
 			{
-				char decision[2];
+				char yellowdecision[2];
+				char reddecision[2];
 
 				puts("Choose a path:\n 1 (yellow)\n 2 (red)\n 3 (green)\n");
 				scanf("%d", &choice);
@@ -229,9 +230,9 @@ int main(int argc, char *argv[])
 					puts("      |  10  |      ");
 					puts("      |______|      \n");
 					puts("do you want to play with it?\ny or n\n");
-					scanf(" %s", decision);
+					scanf(" %s", yellowdecision);
 
-					if (strcmp(decision, "y") == 0)
+					if (strcmp(yellowdecision, "y") == 0)
 					//if its equal to each other
 					//0 = true, !0 == false
 					{
@@ -274,19 +275,64 @@ int main(int argc, char *argv[])
 						}
 					}
 
-					else if (strcmp(decision, "n") == 0)
-					//if they are equak to each other
+					else if (strcmp(yellowdecision, "n") == 0)
 					{
 						printf("Youre taken back to your previous path\n");
 					}
-					break;
 				}
 				case 2:
 				{
-					puts("red");
-					puts("exit (99)");
-					scanf("%d", &choice);
+					char key[20];
+					char usertry[20];
+					FILE *output, *Deciphered;
+					output = fopen("output.txt", "w");
+					Deciphered = fopen("Deciphered.txt", "r");
 
+					puts("Youve chosen the red road, and you see a blue tunnel. You enter and you\nsee a wall with a code pad on it, its asking if you\nwant to see the prompt to move forward. Do you say yes or no? (y or n)\n");
+					scanf(" %c", reddecision);
+					//create a text thing where we show the user the file and we make them
+					//deciper the code and if its right they will move forward
+					//if they get it wrong then they will have to start all over (99)
+					int keepLooping = 1;
+					while (strcmp(reddecision, "y") == 0 && keepLooping == 1)
+					{
+						printf("Decipher the following text: \nOnce you have an answer, input it below\n");
+						puts("465346346346"); //text file to decipher
+						scanf(" %s", usertry);
+						//if yes then we will prompt the text and ask to deciper
+
+						fscanf(Deciphered, " %s", key);
+						if (strcmp(usertry, key) == 0) //check if the same then continue
+						{
+							// printf(" %s\n", userDtry);
+							// fprintf(Deciphered, " %s\n", userDtry);
+							puts("user try worked\n");
+							keepLooping = 0;
+						}
+						else
+						{
+							fprintf(output, "Failed Attempt: %s\n", usertry);
+							puts("didnt work");
+							//break;
+							//fprintf(output, " %s", output);
+						}
+						//im trying to compare user input with a key txt file I have
+						//then print the key file answer and say it was correct
+						//if its correct then it will move forward
+
+						//i was able to compare the user input to contents inside
+
+						fprintf(output, "\n");
+					}
+					if (strcmp(reddecision, "n") == 0)
+					{
+						puts("You said no\n");
+						break;
+					}
+					puts("out of while loop");
+					rewind(output);
+
+					fclose(output);
 					break;
 				}
 				case 3:
@@ -297,10 +343,8 @@ int main(int argc, char *argv[])
 
 					break;
 				}
-				break;
 				}
 			}
-			break;
 		}
 		case 16:
 		{
