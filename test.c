@@ -584,8 +584,7 @@ void monikacase1(char yellowdecision[])
 
 void monikacase2(char reddecision[])
 {
-	char key[20];
-	char usertry[20];
+	char key[20], usertry[20], pressF[2];
 	FILE *output, *Deciphered;
 	output = fopen("output.txt", "w");
 	Deciphered = fopen("Deciphered.txt", "r");
@@ -598,7 +597,7 @@ void monikacase2(char reddecision[])
 	while (strcmp(reddecision, "y") == 0 && keepLooping == 1)
 	{
 		printf("\nDecipher the following text: \nOnce you have an answer, input it below\n");
-		puts("\n071 097 114 114 101 116 116 032 066 108 117 032 080 111 112 112 101\n"); //text file to decipher
+		puts("\n71 97 114 114 101 116 116 66 108 117 80 111 112 112 101\n"); //text file to decipher
 		puts("Need a hint? Ask the key\n");
 		scanf(" %s", usertry);
 		//if yes then we will prompt the text and ask to deciper
@@ -622,12 +621,24 @@ void monikacase2(char reddecision[])
 
 		fprintf(output, "\n");
 	}
-	if (strcmp(reddecision, "n") == 0)
-	{
-		puts("You said no\n");
-	}
-	puts("out of while loop\n");
-	rewind(output);
+		rewind(output);
+		fclose(output);
 
-	fclose(output);
+		if (strcmp(reddecision, "n") == 0)
+		{
+			puts("You said no\n");
+
+			puts("You tried going back to the entrance and fell through a dirt hole and died, press f to pay respects\n");
+			scanf(" %c", pressF);
+
+		if (strcmp(pressF, "f") == 0)
+		{
+			exit(1);
+		}
+		else
+		{
+			puts("fine then, dont pay respects\n");
+			exit(1);
+		}
+	}
 }
