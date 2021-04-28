@@ -228,7 +228,45 @@ int main(int argc, char *argv[])
 					}
 					case 3:
 					{	
-						break;
+						char greenchoice[2];
+
+						puts("Do you want to continue green path? (y or n)\n");
+						scanf(" %s", greenchoice);
+
+						if (strcmp(greenchoice, "y") == 0)
+						{
+							
+						}
+						else if (strcmp(greenchoice, "n") == 0)
+						{
+							//create a gpa generator since they dont want to continue
+							puts("Fine, since you dont want to continue, maybe a GPA generator will be fun for you\n");
+
+							char monikaGrades[50];
+							//char *monikapointer = monikaGrades;
+							//char poorGrades[2];
+							puts("Enter your letter grades and when youre done finish with q\n");
+							scanf(" %s", monikaGrades);
+							
+
+							//left off in trying to make above run bc it only runs twice
+							//find a way to make it run until I stop
+							//also add a pointer
+							//also add sum of grades and switch for grades
+							//only lowercase
+							//if not exit
+							scanf(" %s", monikaGrades);
+							printf(" %s\n", monikaGrades);
+
+							if(strcmp(monikaGrades, "q") == 0)
+							{
+								//array filled in
+								//calculate everything inside here
+								puts("youre in the q loop and left\n");
+								break;
+							}
+							puts("you exited the loop\n");
+						}
 					}
 				}
 			}
