@@ -216,24 +216,20 @@ int main(int argc, char *argv[])
 
 				switch (choice)
 				{
-				case 1:
-				{
-					monikacase1(yellowdecision);
-					break;
-				}
-				case 2:
-				{
-					monikacase2(reddecision);
-					break;
-				}
-				case 3:
-				{
-					puts("green");
-					puts("exit (99)");
-					scanf("%d", &choice);
-
-					break;
-				}
+					case 1:
+					{
+						monikacase1(yellowdecision);
+						break;
+					}
+					case 2:
+					{
+						monikacase2(reddecision);
+						break;
+					}
+					case 3:
+					{	
+						break;
+					}
 				}
 			}
 		}
@@ -541,7 +537,7 @@ void monikacase1(char yellowdecision[])
 			
 				for(i = 0; i < 2; i++)
 				{
-					puts("You stand infront of the first box, and you find a 6 sided die\nnext to the die theres a note that says to roll the die in order to jump.\nDo you want to roll again? (y or n)\n");
+					puts("You stand infront of the first box, and you find a 6 sided die\nnext to the die theres a note that says to roll the die in order to jump.\nDo you want to roll? (y or n)\n");
 					scanf(" %s", anotherRoll);
 					//while the choices are wrong, do the below
 					//but if its right it will exit and move forward
@@ -576,13 +572,42 @@ void monikacase1(char yellowdecision[])
 
 	else if (strcmp(yellowdecision, "n") == 0)
 	{
-		printf("Youre taken back to your previous path\n");
+		FILE *monikacourage;
+						
+		char filecourage[100], couragePrint;
+	
+		printf("Want to see something cool? Type in 'magic.txt'\n");
+		scanf("%s", filecourage);
+	
+		// Open file
+		monikacourage = fopen(filecourage, "r");
+		if (monikacourage == NULL)
+		{
+			printf("Wrong file name, retry \n");
+			exit(0);
+		}
+	
+		// Read contents from file
+		couragePrint = fgetc(monikacourage);
+		while (couragePrint != EOF)
+		{
+			printf ("%c", couragePrint);
+			couragePrint = fgetc(monikacourage);
+		}
+
+		puts("\nbye\n");
+		fclose(monikacourage);
+		exit(1);
+	//return 0; //exits u from the program
+
+
 	}
 }
 
 void monikacase2(char reddecision[])
 {
-	char key[20], usertry[20], pressF[2];
+	char key[20];
+	char usertry[20], pressF[2];
 	FILE *output, *Deciphered;
 	output = fopen("monikaoutput.txt", "w");
 	Deciphered = fopen("Deciphered.txt", "r");
