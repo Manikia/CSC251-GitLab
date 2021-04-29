@@ -239,33 +239,28 @@ int main(int argc, char *argv[])
 						}
 						else if (strcmp(greenchoice, "n") == 0)
 						{
-							//create a gpa generator since they dont want to continue
-							puts("Fine, since you dont want to continue, maybe a GPA generator will be fun for you\n");
+							int monikai = 0, monikasize = 3;
+							int monikaArray[monikasize];
+							int *monikaPointer;
+							monikaPointer = monikaArray;
 
-							char monikaGrades[50];
-							//char *monikapointer = monikaGrades;
-							//char poorGrades[2];
-							puts("Enter your letter grades and when youre done finish with q\n");
-							scanf(" %s", monikaGrades);
-							
-
-							//left off in trying to make above run bc it only runs twice
-							//find a way to make it run until I stop
-							//also add a pointer
-							//also add sum of grades and switch for grades
-							//only lowercase
-							//if not exit
-							scanf(" %s", monikaGrades);
-							printf(" %s\n", monikaGrades);
-
-							if(strcmp(monikaGrades, "q") == 0)
+							printf("Fine, since you dont have to continue maybe youll like this ~𝓿𝓮𝓻𝔂 𝓬𝓸𝓸𝓵~ number adder thing\nChoose 3 numbers to add together and get the average\n");
+							for(monikai=0; monikai < monikasize; monikai++)
 							{
-								//array filled in
-								//calculate everything inside here
-								puts("youre in the q loop and left\n");
-								break;
+								scanf(" %d", &monikaArray[monikai]);
 							}
-							puts("you exited the loop\n");
+							printf("Things inputted are: \n");
+							monikasize = 3;
+							
+							for(monikai = 0; monikai < (monikasize - 1); monikai++)
+							{
+								printf("    %d\n", *monikaPointer);
+								monikaPointer++;	
+							}
+							monikasize = sizeof(*monikaPointer)/sizeof(int);
+							printf("+   %d \n---------\n", monikaPointer[monikasize - 1]);
+							
+							exit(1);
 						}
 					}
 				}
@@ -612,7 +607,7 @@ void monikacase1(char yellowdecision[])
 	{
 		FILE *monikacourage;
 						
-		char filecourage[900] = "sponge.txt", couragePrint;
+		char filecourage[200] = "sponge.txt", couragePrint;
 	
 	
 		// Open file

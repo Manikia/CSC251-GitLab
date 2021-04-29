@@ -10,4 +10,4 @@ Project must include:
 - [ ] character functions - 
 - [x] file manipulation - decription
 - [x] arrays - string array for character string 'poppe' key
-- [ ] pointers -
+- [x] pointers -
