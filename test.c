@@ -612,10 +612,8 @@ void monikacase1(char yellowdecision[])
 	{
 		FILE *monikacourage;
 						
-		char filecourage[100], couragePrint;
+		char filecourage[900] = "sponge.txt", couragePrint;
 	
-		printf("Want to see something cool? Type in 'magic.txt'\n");
-		scanf("%s", filecourage);
 	
 		// Open file
 		monikacourage = fopen(filecourage, "r");
@@ -633,6 +631,7 @@ void monikacase1(char yellowdecision[])
 			couragePrint = fgetc(monikacourage);
 		}
 
+		puts("I dOnT wAnT tO pResS yEs\n");
 		puts("\nbye\n");
 		fclose(monikacourage);
 		exit(1);

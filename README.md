@@ -6,9 +6,8 @@ Project must include:
 - [x] random - 
 - [ ] calculate an average - 
 - [x] separate functions - 
-- [ ] string functions - 
+- [x] string functions - 
 - [ ] character functions - 
 - [x] file manipulation - decription
 - [x] arrays - string array for character string 'poppe' key
 - [ ] pointers -
-
