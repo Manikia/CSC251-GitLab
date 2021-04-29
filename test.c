@@ -10,6 +10,8 @@
 
 void monikacase1(char yellowdecision[]);
 void monikacase2(char reddecision[]);
+void monikacase3(char greenchoice[]);
+
 
 int main(int argc, char *argv[])
 {
@@ -210,6 +212,7 @@ int main(int argc, char *argv[])
 			{
 				char yellowdecision[2];
 				char reddecision[2];
+				char greenchoice[2];
 
 				puts("Choose a path:\n 1 (yellow)\n 2 (red)\n 3 (green)\n");
 				scanf("%d", &choice);
@@ -228,40 +231,8 @@ int main(int argc, char *argv[])
 					}
 					case 3:
 					{	
-						char greenchoice[2];
-
-						puts("Do you want to continue green path? (y or n)\n");
-						scanf(" %s", greenchoice);
-
-						if (strcmp(greenchoice, "y") == 0)
-						{
-							
-						}
-						else if (strcmp(greenchoice, "n") == 0)
-						{
-							int monikai = 0, monikasize = 3;
-							int monikaArray[monikasize];
-							int *monikaPointer;
-							monikaPointer = monikaArray;
-
-							printf("Fine, since you dont have to continue maybe youll like this ~𝓿𝓮𝓻𝔂 𝓬𝓸𝓸𝓵~ number adder thing\nChoose 3 numbers to add together and get the average\n");
-							for(monikai=0; monikai < monikasize; monikai++)
-							{
-								scanf(" %d", &monikaArray[monikai]);
-							}
-							printf("Things inputted are: \n");
-							monikasize = 3;
-							
-							for(monikai = 0; monikai < (monikasize - 1); monikai++)
-							{
-								printf("    %d\n", *monikaPointer);
-								monikaPointer++;	
-							}
-							monikasize = sizeof(*monikaPointer)/sizeof(int);
-							printf("+   %d \n---------\n", monikaPointer[monikasize - 1]);
-							
-							exit(1);
-						}
+						monikacase3(greenchoice);
+						break;
 					}
 				}
 			}
@@ -698,5 +669,55 @@ void monikacase2(char reddecision[])
 	}
 }
 
+void monikacase3(char greenchoice[])
+{
+	puts("Do you want to continue green path? (y or n)\n");
+	scanf(" %s", greenchoice);
 
+	if (strcmp(greenchoice, "y") == 0)
+	{
+		
+	}
+	else if (strcmp(greenchoice, "n") == 0)
+	{
+		int monikai = 0, monikasize = 3, monikasum = 0, monikaArray[monikasize];
+
+		int *monikaPointer;
+		monikaPointer = monikaArray;
+
+		printf("Fine since you dont want to go the path you can play this boring calculator game\nInsert five numbers you want to add and find the sum of\n");
+		for(monikai=0; monikai < monikasize; monikai++)
+		{
+			scanf(" %d", &monikaArray[monikai]);
+		}
+		printf("Things inputted are: \n");
+
+
+		monikasize = 3;
+		for(monikai = 0; monikai < (monikasize - 1); monikai++)
+		{
+			printf("      %d\n", *monikaPointer);
+			monikaPointer++;	
+		}
+
+		monikasize = sizeof(*monikaPointer)/sizeof(int);
+		printf("  +   %d \n---------\n", monikaPointer[monikasize - 1]);
+
+
+		monikasum = 0;
+		monikasize = 3;
+		for(monikai = 0; monikai < monikasize; monikai++)
+		{
+			monikasum += monikaArray[monikai];
+		}
+		printf("sum : %d\n", monikasum);
+
+		int monikaaverage = 0;
+		monikaaverage = (double)monikasum/(double)monikasize;
+
+		printf("Average: %.1lf\n", (double)monikaaverage);
+		
+		exit(1);
+	}
+}
 
