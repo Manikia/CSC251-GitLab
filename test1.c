@@ -8,8 +8,13 @@
 #include <time.h>
 #include <stdio.h>
 
-void hopScotchPrint(void);
+void monikawelcome(char name[]);
 void monikacase1(char yellowdecision[]);
+void monikacase2(char reddecision[]);
+void monikacase3(char greenchoice[]);
+
+
+
 int main(int argc, char *argv[])
 {
 	int x, y, z, i, h, g, k, choice = 0;
@@ -209,133 +214,30 @@ int main(int argc, char *argv[])
 			{
 				char yellowdecision[2];
 				char reddecision[2];
+				char greenchoice[2];
+
+				monikawelcome(name);
 
 				puts("Choose a path:\n 1 (yellow)\n 2 (red)\n 3 (green)\n");
 				scanf("%d", &choice);
 
 				switch (choice)
 				{
-				case 1:
-				{
-					monikacase1(yellowdecision);
-					break;
-					// puts("You chose the yellow path, as you walk you see a hop scotch drawn on the floor\n");
-					// hopScotchPrint();
-					// scanf(" %s", yellowdecision);
-					// //prints hopscotch
-
-					// if (strcmp(yellowdecision, "y") == 0)
-					// //if its equal to each other
-					// //0 = true, !0 == false
-					// {
-					// 	int jumps = 0;
-					// 	int i = 0;
-					// 	char anotherRoll[2];
-					// 	srand(time(NULL));
-
-					// 	int yellowTries = 0;
-					// 	while (jumps != 6)
-					// 	{
-					// 		yellowTries++;
-					// 		if (yellowTries > 2)
-					// 		{
-					// 			puts("\nYou ran out of attempts, good bye\n");
-					// 			break;
-					// 		}
-					// 		//left off in trying to create limit of attempts but it doesnt work
-					// 		//try to fix when possible
-
-					// 		//create a dice that goes
-					// 		//from 1-6 for the amount of spaces the person jumps
-
-					// 		puts("You stand infront of the first box, and you find a 6 sided die\nnext to the die theres a note that says to roll the die in order to jump.\nDo you want to roll again? (y or n)\n");
-					// 		scanf(" %s", anotherRoll);
-					// 		//while the choices are wrong, do the below
-					// 		//but if its right it will exit and move forward
-
-					// 		if (strcmp(anotherRoll, "y") == 0)
-					// 		{
-					// 			jumps = (rand() % 6) + 1;
-					// 			//printf("Random : %d\n", jumps);
-					// 			//above prints one int
-					// 			if (jumps != 6)
-					// 			{
-					// 				printf("You got %d from the die, it wasnt enough to go to the other side, re-roll.\n", jumps);
-					// 			}
-					// 			else
-					// 			{
-					// 				printf("You got %d, you can pass\n", jumps);
-					// 				break;
-					// 			}
-					// 		}
-					// 	}
-					// }
-
-					// else if (strcmp(yellowdecision, "n") == 0)
-					// {
-					// 	printf("Youre taken back to your previous path\n");
-					// }
-					// break;
-				}
-				case 2:
-				{
-					char key[20];
-					char usertry[20];
-					FILE *output, *Deciphered;
-					output = fopen("output.txt", "w");
-					Deciphered = fopen("Deciphered.txt", "r");
-
-					puts("Youve chosen the red road, and you see a blue tunnel. You enter and you\nsee a wall with a code pad on it, its asking if you\nwant to see the prompt to move forward. Do you say yes or no? (y or n)\n");
-					scanf(" %c", reddecision);
-					//create a text thing where we show the user the file and we make them
-					//deciper the code and if its right they will move forward
-					int keepLooping = 1;
-					while (strcmp(reddecision, "y") == 0 && keepLooping == 1)
+					case 1:
 					{
-						printf("\nDecipher the following text: \nOnce you have an answer, input it below\n");
-						puts("\n071 097 114 114 101 116 116 032 066 108 117 032 080 111 112 112 101\n"); //text file to decipher
-						puts("Need a hint? Ask the key\n");
-						scanf(" %s", usertry);
-						//if yes then we will prompt the text and ask to deciper
-
-						fscanf(Deciphered, " %s", key);
-						if (strcmp(usertry, key) == 0) //check if the same then continue
-						{
-							puts("user try worked\n");
-							puts("You can see your previous attempts in the output.txt file\n");
-							keepLooping = 0;
-						}
-						else
-						{
-							fprintf(output, "Failed Attempt: %s\n", usertry);
-						}
-						//im trying to compare user input with a key txt file I have
-						//then print the key file answer and say it was correct
-						//if its correct then it will move forward
-
-						//i was able to compare the user input to contents inside
-
-						fprintf(output, "\n");
-					}
-					if (strcmp(reddecision, "n") == 0)
-					{
-						puts("You said no\n");
+						monikacase1(yellowdecision);
 						break;
 					}
-					puts("out of while loop\n");
-					rewind(output);
-
-					fclose(output);
-					break;
-				}
-				case 3:
-				{
-					puts("green");
-					puts("exit (99)");
-					scanf("%d", &choice);
-
-					break;
-				}
+					case 2:
+					{
+						monikacase2(reddecision);
+						break;
+					}
+					case 3:
+					{	
+						monikacase3(greenchoice);
+						break;
+					}
 				}
 			}
 		}
@@ -604,8 +506,10 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
-void hopScotchPrint()
+
+void monikacase1(char yellowdecision[])
 {
+	puts("You chose the yellow path, as you walk you see a hop scotch drawn on the floor\n");
 	puts("       ______       ");
 	puts("      |   1  |      ");
 	puts(" _____|______|_____ ");
@@ -621,11 +525,6 @@ void hopScotchPrint()
 	puts("      |______|      \n");
 
 	puts("do you want to play with it?\ny or n\n");
-}
-void monikacase1(char yellowdecision[])
-{
-	puts("You chose the yellow path, as you walk you see a hop scotch drawn on the floor\n");
-	hopScotchPrint();
 	scanf(" %s", yellowdecision);
 	//prints hopscotch
 
@@ -642,42 +541,207 @@ void monikacase1(char yellowdecision[])
 		while (jumps != 6)
 		{
 			yellowTries++;
-			if (yellowTries > 2)
-			{
-				puts("\nYou ran out of attempts, good bye\n");
-				break;
-			}
-			//left off in trying to create limit of attempts but it doesnt work
-			//try to fix when possible
-
-			//create a dice that goes
-			//from 1-6 for the amount of spaces the person jumps
-
-			puts("You stand infront of the first box, and you find a 6 sided die\nnext to the die theres a note that says to roll the die in order to jump.\nDo you want to roll again? (y or n)\n");
-			scanf(" %s", anotherRoll);
-			//while the choices are wrong, do the below
-			//but if its right it will exit and move forward
-
-			if (strcmp(anotherRoll, "y") == 0)
-			{
-				jumps = (rand() % 6) + 1;
-				//printf("Random : %d\n", jumps);
-				//above prints one int
-				if (jumps != 6)
+			i = 0;
+			
+				for(i = 0; i < 2; i++)
 				{
-					printf("You got %d from the die, it wasnt enough to go to the other side, re-roll.\n", jumps);
+					puts("You stand infront of the first box, and you find a 6 sided die\nnext to the die theres a note that says to roll the die in order to jump.\nDo you want to roll? (y or n)\n");
+					scanf(" %s", anotherRoll);
+					//while the choices are wrong, do the below
+					//but if its right it will exit and move forward
+
+					if (strcmp(anotherRoll, "y") == 0)
+					{
+						jumps = (rand() % 6) + 1;
+						//above prints one int
+						if (jumps != 6)
+						{
+							printf("You got %d from the die, it wasnt enough to go to the other side, re-roll.\n", jumps);
+						}
+						else
+						{
+							printf("You got %d, you can pass\n", jumps);
+							break;
+						}
+					}
+				}
+				
+				if(jumps == 6)
+				{
+					break;
 				}
 				else
 				{
-					printf("You got %d, you can pass\n", jumps);
+					puts("\nYou ran out of attempts, good bye\n");
 					break;
 				}
-			}
 		}
 	}
 
 	else if (strcmp(yellowdecision, "n") == 0)
 	{
-		printf("Youre taken back to your previous path\n");
+		FILE *monikacourage;
+						
+		char filecourage[200] = "sponge.txt", couragePrint;
+	
+	
+		// Open file
+		monikacourage = fopen(filecourage, "r");
+		if (monikacourage == NULL)
+		{
+			printf("Wrong file name, retry \n");
+			exit(0);
+		}
+	
+		// Read contents from file
+		couragePrint = fgetc(monikacourage);
+		while (couragePrint != EOF)
+		{
+			printf ("%c", couragePrint);
+			couragePrint = fgetc(monikacourage);
+		}
+
+		puts("I dOnT wAnT tO pResS yEs\n");
+		puts("\nbye\n");
+		fclose(monikacourage);
+		exit(1);
+	//return 0; //exits u from the program
+
+
 	}
 }
+
+void monikacase2(char reddecision[])
+{
+	char key[20];
+	char usertry[20], pressF[2];
+	FILE *output, *Deciphered;
+	output = fopen("monikaoutput.txt", "w");
+	Deciphered = fopen("Deciphered.txt", "r");
+
+	puts("Youve chosen the red road, and you see a blue tunnel. You enter and you\nsee a wall with a code pad on it, its asking if you\nwant to see the prompt to move forward. Do you say yes or no? (y or n)\n");
+	scanf(" %c", reddecision);
+	//create a text thing where we show the user the file and we make them
+	//deciper the code and if its right they will move forward
+	int keepLooping = 1;
+	while (strcmp(reddecision, "y") == 0 && keepLooping == 1)
+	{
+		printf("\nDecipher the following text: \nOnce you have an answer, input it below\n");
+		puts("\n71 97 114 114 101 116 116 66 108 117 80 111 112 112 101\n"); //text file to decipher
+		puts("Need a hint? Ask the key\n");
+		scanf(" %s", usertry);
+		//if yes then we will prompt the text and ask to deciper
+
+		fscanf(Deciphered, " %s", key);
+		if (strcmp(usertry, key) == 0) //check if the same then continue
+		{
+			puts("user try worked\n");
+			puts("You can see your previous attempts in the output.txt file\n");
+			keepLooping = 0;
+		}
+		else
+		{
+			fprintf(output, "Failed Attempt: %s\n", usertry);
+		}
+
+		fprintf(output, "\n");
+	}
+		rewind(output);
+		fclose(output);
+
+		if (strcmp(reddecision, "n") == 0)
+		{
+			puts("You said no\n");
+
+			puts("You tried going back to the entrance and fell through a dirt hole and died, press f to pay respects\n");
+			scanf(" %c", pressF);
+
+		if (strcmp(pressF, "f") == 0)
+		{
+			exit(1);
+		}
+		else
+		{
+			puts("fine then, dont pay respects\n");
+			exit(1);
+		}
+	}
+}
+
+void monikacase3(char greenchoice[])
+{
+	puts("Do you want to continue green path? (y or n)\n");
+	scanf(" %s", greenchoice);
+
+	if (strcmp(greenchoice, "y") == 0)
+	{
+		
+	}
+	else if (strcmp(greenchoice, "n") == 0)
+	{
+		int monikai = 0, monikasize = 3, monikasum = 0, monikaArray[monikasize];
+
+		int *monikaPointer;
+		monikaPointer = monikaArray;
+
+		printf("Fine since you dont want to go the path you can play this boring calculator game\nInsert five numbers you want to add and find the sum of\n");
+		for(monikai=0; monikai < monikasize; monikai++)
+		{
+			scanf(" %d", &monikaArray[monikai]);
+		}
+		printf("Things inputted are: \n");
+
+
+		monikasize = 3;
+		for(monikai = 0; monikai < (monikasize - 1); monikai++)
+		{
+			printf("      %d\n", *monikaPointer);
+			monikaPointer++;	
+		}
+
+		monikasize = sizeof(*monikaPointer)/sizeof(int);
+		printf("  +   %d \n---------\n", monikaPointer[monikasize - 1]);
+
+
+		monikasum = 0;
+		monikasize = 3;
+		for(monikai = 0; monikai < monikasize; monikai++)
+		{
+			monikasum += monikaArray[monikai];
+		}
+		printf("sum : %d\n", monikasum);
+
+		int monikaaverage = 0;
+		monikaaverage = (double)monikasum/(double)monikasize;
+
+		printf("Average: %.1lf\n", (double)monikaaverage);
+		
+		exit(1);
+	}
+}
+
+void monikawelcome(char name[])
+{
+	
+	int monikai = 0;
+	
+	char monikaname[256] = {0};
+
+	strcpy(monikaname, name);
+
+	for(monikai = 0; monikai < 256; monikai++)
+	{
+		if(islower(monikaname[monikai]))
+		{
+			monikaname[monikai] = toupper(monikaname[monikai]);
+		}
+		if(isupper(monikaname[monikai]))
+		{
+			//printf("%c", monikaname[monikai]);
+		}
+	}
+	printf("\n~Welcome %s to this minigame~\n\n", monikaname);
+}
+
+
+

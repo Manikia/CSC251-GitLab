@@ -8,9 +8,11 @@
 #include <time.h>
 #include <stdio.h>
 
+void monikawelcome(char name[]);
 void monikacase1(char yellowdecision[]);
 void monikacase2(char reddecision[]);
 void monikacase3(char greenchoice[]);
+
 
 
 int main(int argc, char *argv[])
@@ -213,6 +215,8 @@ int main(int argc, char *argv[])
 				char yellowdecision[2];
 				char reddecision[2];
 				char greenchoice[2];
+
+				monikawelcome(name);
 
 				puts("Choose a path:\n 1 (yellow)\n 2 (red)\n 3 (green)\n");
 				scanf("%d", &choice);
@@ -631,19 +635,26 @@ void monikacase2(char reddecision[])
 		fscanf(Deciphered, " %s", key);
 		if (strcmp(usertry, key) == 0) //check if the same then continue
 		{
-			puts("user try worked\n");
-			puts("You can see your previous attempts in the output.txt file\n");
+			puts("\nPIN UNLOCKED\n");
+			puts("You can see your previous attempts in the monikaoutput.txt file");
+			
+			if(strcmp(usertry, key) == 0)
+			{
+				puts("\nYour sight is filled with darkness and the glistening of the water as it shines from the light behind you.");
+				puts("You begin to move forward and get into the water but it feels weird. You think maybe its because its cold so you just dismiss it.");
+				puts("You continue but you begin to feel a burning sensation on your body and you begin panicking,\n'what's in this water'");
+				puts("As you look for something to grab on to get out of the water\nyou see on the side of the tunnel river theres a label in red that reads:");
+				puts("'WARNING: SULFURIC ACID REMAINS IN THE WATER.\nIF CONTACT, PERSIHABLE\n");
+				puts("YOU DIED\n");
+
+				exit(1);
+			}
 			keepLooping = 0;
 		}
 		else
 		{
 			fprintf(output, "Failed Attempt: %s\n", usertry);
 		}
-		// //im trying to compare user input with a key txt file I have
-		// //then print the key file answer and say it was correct
-		// //if its correct then it will move forward
-
-		// //i was able to compare the user input to contents inside
 
 		fprintf(output, "\n");
 	}
@@ -676,24 +687,24 @@ void monikacase3(char greenchoice[])
 
 	if (strcmp(greenchoice, "y") == 0)
 	{
-		
+		puts("yes option\n");
 	}
 	else if (strcmp(greenchoice, "n") == 0)
 	{
-		int monikai = 0, monikasize = 3, monikasum = 0, monikaArray[monikasize];
+		int monikai = 0, monikasize = 5, monikasum = 0, monikaArray[monikasize];
 
 		int *monikaPointer;
 		monikaPointer = monikaArray;
 
 		printf("Fine since you dont want to go the path you can play this boring calculator game\nInsert five numbers you want to add and find the sum of\n");
-		for(monikai=0; monikai < monikasize; monikai++)
+		for(monikai = 0; monikai < monikasize; monikai++)
 		{
 			scanf(" %d", &monikaArray[monikai]);
 		}
 		printf("Things inputted are: \n");
 
 
-		monikasize = 3;
+		monikasize = 5;
 		for(monikai = 0; monikai < (monikasize - 1); monikai++)
 		{
 			printf("      %d\n", *monikaPointer);
@@ -705,7 +716,7 @@ void monikacase3(char greenchoice[])
 
 
 		monikasum = 0;
-		monikasize = 3;
+		monikasize = 5;
 		for(monikai = 0; monikai < monikasize; monikai++)
 		{
 			monikasum += monikaArray[monikai];
@@ -720,4 +731,29 @@ void monikacase3(char greenchoice[])
 		exit(1);
 	}
 }
+
+void monikawelcome(char name[])
+{
+	
+	int monikai = 0;
+	
+	char monikaname[256] = {0};
+
+	strcpy(monikaname, name);
+
+	for(monikai = 0; monikai < 256; monikai++)
+	{
+		if(islower(monikaname[monikai]))
+		{
+			monikaname[monikai] = toupper(monikaname[monikai]);
+		}
+		if(isupper(monikaname[monikai]))
+		{
+			//printf("%c", monikaname[monikai]);
+		}
+	}
+	printf("\n~Welcome %s to this minigame~\n\n", monikaname);
+}
+
+
 
