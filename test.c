@@ -218,6 +218,7 @@ int main(int argc, char *argv[])
 
 				monikawelcome(name);
 
+				puts("You enter door 15 but you end up outside and see three colored paths\n");
 				puts("Choose a path:\n 1 (yellow)\n 2 (red)\n 3 (green)\n");
 				scanf("%d", &choice);
 
@@ -507,6 +508,32 @@ int main(int argc, char *argv[])
 }
 
 
+
+
+
+void monikawelcome(char name[])
+{
+	
+	int monikai = 0;
+	
+	char monikaname[256] = {0};
+
+	strcpy(monikaname, name);
+
+	for(monikai = 0; monikai < 256; monikai++)
+	{
+		if(islower(monikaname[monikai]))
+		{
+			monikaname[monikai] = toupper(monikaname[monikai]);
+		}
+		if(isupper(monikaname[monikai]))
+		{
+			//printf("%c", monikaname[monikai]);
+		}
+	}
+	printf("\n~Welcome %s to this minigame~\n\n", monikaname);
+}
+
 void monikacase1(char yellowdecision[])
 {
 	puts("You chose the yellow path, as you walk you see a hop scotch drawn on the floor\n");
@@ -731,29 +758,4 @@ void monikacase3(char greenchoice[])
 		exit(1);
 	}
 }
-
-void monikawelcome(char name[])
-{
-	
-	int monikai = 0;
-	
-	char monikaname[256] = {0};
-
-	strcpy(monikaname, name);
-
-	for(monikai = 0; monikai < 256; monikai++)
-	{
-		if(islower(monikaname[monikai]))
-		{
-			monikaname[monikai] = toupper(monikaname[monikai]);
-		}
-		if(isupper(monikaname[monikai]))
-		{
-			//printf("%c", monikaname[monikai]);
-		}
-	}
-	printf("\n~Welcome %s to this minigame~\n\n", monikaname);
-}
-
-
 
