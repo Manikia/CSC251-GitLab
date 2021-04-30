@@ -591,6 +591,11 @@ void monikacase1(char yellowdecision[])
 							break;
 						}
 					}
+					else
+					{
+						puts("ok, bye\n");
+						exit(1);
+					}
 				}
 				
 				if(jumps == 6)
