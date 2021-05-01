@@ -13,8 +13,6 @@ void monikacase1(char yellowdecision[]);
 void monikacase2(char reddecision[]);
 void monikacase3(char greenchoice[]);
 
-
-
 int main(int argc, char *argv[])
 {
 	int x, y, z, i, h, g, k, choice = 0;
@@ -210,19 +208,19 @@ int main(int argc, char *argv[])
 		}
 		case 15:
 		{
-			while (choice != 99)
+			while(choice != 99)
 			{
 				char yellowdecision[2];
 				char reddecision[2];
 				char greenchoice[2];
-
+				srand(time(NULL));
 				monikawelcome(name);
 
 				puts("You enter door 15 but you end up outside and see three colored paths\n");
 				puts("Choose a path:\n 1 (yellow)\n 2 (red)\n 3 (green)\n");
 				scanf("%d", &choice);
 
-				switch (choice)
+				switch(choice)
 				{
 					case 1:
 					{
@@ -235,7 +233,7 @@ int main(int argc, char *argv[])
 						break;
 					}
 					case 3:
-					{	
+					{
 						monikacase3(greenchoice);
 						break;
 					}
@@ -507,15 +505,11 @@ int main(int argc, char *argv[])
 	return EXIT_SUCCESS;
 }
 
-
-
-
-
 void monikawelcome(char name[])
 {
-	
+
 	int monikai = 0;
-	
+
 	char monikaname[256] = {0};
 
 	strcpy(monikaname, name);
@@ -556,91 +550,87 @@ void monikacase1(char yellowdecision[])
 	scanf(" %s", yellowdecision);
 	//prints hopscotch
 
-	if (strcmp(yellowdecision, "y") == 0)
+	if(strcmp(yellowdecision, "y") == 0)
 	//if its equal to each other
 	//0 = true, !0 == false
 	{
 		int jumps = 0;
 		int i = 0;
 		char anotherRoll[2];
-		srand(time(NULL));
 
 		int yellowTries = 0;
-		while (jumps != 6)
+		while(jumps != 6)
 		{
 			yellowTries++;
 			i = 0;
-			
-				for(i = 0; i < 2; i++)
-				{
-					puts("You stand infront of the first box, and you find a 6 sided die\nnext to the die theres a note that says to roll the die in order to jump.\nDo you want to roll? (y or n)\n");
-					scanf(" %s", anotherRoll);
-					//while the choices are wrong, do the below
-					//but if its right it will exit and move forward
 
-					if (strcmp(anotherRoll, "y") == 0)
+			for(i = 0; i < 2; i++)
+			{
+				puts("You stand infront of the first box, and you find a 6 sided die,\nnext to the die theres a note that says to roll the die in order to jump.\nDo you want to roll? (y or n)\n");
+				scanf(" %s", anotherRoll);
+				//while the choices are wrong, do the below
+				//but if its right it will exit and move forward
+
+				if(strcmp(anotherRoll, "y") == 0)
+				{
+					jumps = (rand() % 6) + 1;
+					//above prints one int
+					if(jumps != 6)
 					{
-						jumps = (rand() % 6) + 1;
-						//above prints one int
-						if (jumps != 6)
-						{
-							printf("You got %d from the die, it wasnt enough to go to the other side, re-roll.\n", jumps);
-						}
-						else
-						{
-							printf("You got %d, you can pass\n", jumps);
-							break;
-						}
+						printf("You got %d from the die, it wasnt enough to go to the other side, re-roll.\n", jumps);
 					}
 					else
 					{
-						puts("ok, bye\n");
-						exit(1);
+						printf("You got %d, you can pass\n", jumps);
+						break;
 					}
-				}
-				
-				if(jumps == 6)
-				{
-					break;
 				}
 				else
 				{
-					puts("\nYou ran out of attempts, good bye\n");
-					break;
+					puts("ok, bye\n");
+					exit(1);
 				}
+			}
+
+			if(jumps == 6)
+			{
+				break;
+			}
+			else
+			{
+				puts("\nYou ran out of attempts, good bye\n");
+				break;
+			}
 		}
 	}
 
 	else if (strcmp(yellowdecision, "n") == 0)
 	{
-		FILE *monikacourage;
-						
-		char filecourage[200] = "sponge.txt", couragePrint;
-	
-	
+		FILE *monikasponge;
+
+		char filesponge[200] = "sponge.txt", spongePrint;
+
 		// Open file
-		monikacourage = fopen(filecourage, "r");
-		if (monikacourage == NULL)
+		monikasponge = fopen(filesponge, "r");
+		if (monikasponge == NULL)
 		{
 			printf("Wrong file name, retry \n");
 			exit(0);
 		}
-	
+
 		// Read contents from file
-		couragePrint = fgetc(monikacourage);
-		while (couragePrint != EOF)
+		spongePrint = fgetc(monikasponge);
+		while (spongePrint != EOF)
 		{
-			printf ("%c", couragePrint);
-			couragePrint = fgetc(monikacourage);
+			printf("%c", spongePrint);
+			spongePrint = fgetc(monikasponge);
 		}
 
 		puts("I dOnT wAnT tO pResS yEs\n");
 		puts("\nbye\n");
-		fclose(monikacourage);
+		fclose(monikasponge);
 		exit(1);
-	//return 0; //exits u from the program
-
-
+		//return 0; //exits u from the program
 	}
 }
 
@@ -648,6 +638,7 @@ void monikacase2(char reddecision[])
 {
 	char key[20];
 	char usertry[20], pressF[2];
+	
 	FILE *output, *Deciphered;
 	output = fopen("monikaoutput.txt", "w");
 	Deciphered = fopen("Deciphered.txt", "r");
@@ -657,7 +648,7 @@ void monikacase2(char reddecision[])
 	//create a text thing where we show the user the file and we make them
 	//deciper the code and if its right they will move forward
 	int keepLooping = 1;
-	while (strcmp(reddecision, "y") == 0 && keepLooping == 1)
+	while(strcmp(reddecision, "y") == 0 && keepLooping == 1)
 	{
 		printf("\nDecipher the following text: \nOnce you have an answer, input it below\n");
 		puts("\n71 97 114 114 101 116 116 66 108 117 80 111 112 112 101\n"); //text file to decipher
@@ -666,18 +657,17 @@ void monikacase2(char reddecision[])
 		//if yes then we will prompt the text and ask to deciper
 
 		fscanf(Deciphered, " %s", key);
-		if (strcmp(usertry, key) == 0) //check if the same then continue
+		if(strcmp(usertry, key) == 0) //check if the same then continue
 		{
 			puts("\nPIN UNLOCKED\n");
 			puts("You can see your previous attempts in the monikaoutput.txt file");
-			
+
 			if(strcmp(usertry, key) == 0)
 			{
 				puts("\nYour sight is filled with darkness and the glistening of the water as it shines from the light behind you.");
 				puts("You begin to move forward and get into the water but it feels weird. You think maybe its because its cold so you just dismiss it.");
 				puts("You continue but you begin to feel a burning sensation on your body and you begin panicking,\n'what's in this water'");
-				puts("As you look for something to grab on to get out of the water\nyou see on the side of the tunnel river theres a label in red that reads:");
-				puts("'WARNING: SULFURIC ACID REMAINS IN THE WATER.\nIF CONTACT, PERSIHABLE\n");
+				puts("As you look for something to grab to get out of the water\nyour eyes lock on to a warning label on the side of the river, reading: 'WARNING: SULFURIC ACID REMAINS IN THE WATER\nIF IN CONTACT, PERISHABLE'\n");
 				puts("YOU DIED\n");
 
 				exit(1);
@@ -691,17 +681,17 @@ void monikacase2(char reddecision[])
 
 		fprintf(output, "\n");
 	}
-		rewind(output);
-		fclose(output);
+	rewind(output);
+	fclose(output);
 
-		if (strcmp(reddecision, "n") == 0)
-		{
-			puts("You said no\n");
+	if(strcmp(reddecision, "n") == 0)
+	{
+		puts("You said no\n");
 
-			puts("You tried going back to the entrance and fell through a dirt hole and died, press f to pay respects\n");
-			scanf(" %c", pressF);
+		puts("You tried going back to the entrance and fell through a dirt hole and died, press f to pay respects\n");
+		scanf(" %c", pressF);
 
-		if (strcmp(pressF, "f") == 0)
+		if(strcmp(pressF, "f") == 0)
 		{
 			exit(1);
 		}
@@ -718,36 +708,33 @@ void monikacase3(char greenchoice[])
 	puts("Do you want to continue green path? (y or n)\n");
 	scanf(" %s", greenchoice);
 
-	if (strcmp(greenchoice, "y") == 0)
+	if(strcmp(greenchoice, "y") == 0)
 	{
 		FILE *monikanothing;
-						
+
 		char filenothing[200] = "nothing.txt", nothingPrint;
-	
-	
+
 		// Open file
 		monikanothing = fopen(filenothing, "r");
-		if (monikanothing == NULL)
+		if(monikanothing == NULL)
 		{
 			printf("Wrong file name, retry \n");
 			exit(0);
 		}
-	
+
 		// Read contents from file
 		nothingPrint = fgetc(monikanothing);
-		while (nothingPrint != EOF)
+		while(nothingPrint != EOF)
 		{
-			printf ("%c", nothingPrint);
+			printf("%c", nothingPrint);
 			nothingPrint = fgetc(monikanothing);
 		}
 
 		puts("\nyoure welcome\n");
 		fclose(monikanothing);
 		exit(1);
-
-
 	}
-	else if (strcmp(greenchoice, "n") == 0)
+	else if(strcmp(greenchoice, "n") == 0)
 	{
 		int monikai = 0, monikasize = 5, monikasum = 0, monikaArray[monikasize];
 
@@ -761,17 +748,15 @@ void monikacase3(char greenchoice[])
 		}
 		printf("Things inputted are: \n");
 
-
 		monikasize = 5;
 		for(monikai = 0; monikai < (monikasize - 1); monikai++)
 		{
 			printf("      %d\n", *monikaPointer);
-			monikaPointer++;	
+			monikaPointer++;
 		}
 
-		monikasize = sizeof(*monikaPointer)/sizeof(int);
+		monikasize = sizeof(*monikaPointer) / sizeof(int);
 		printf("  +   %d \n---------\n", monikaPointer[monikasize - 1]);
-
 
 		monikasum = 0;
 		monikasize = 5;
@@ -782,11 +767,10 @@ void monikacase3(char greenchoice[])
 		printf("sum : %d\n", monikasum);
 
 		int monikaaverage = 0;
-		monikaaverage = (double)monikasum/(double)monikasize;
+		monikaaverage = (double)monikasum / (double)monikasize;
 
 		printf("Average: %.1lf\n", (double)monikaaverage);
-		
+
 		exit(1);
 	}
 }
-
