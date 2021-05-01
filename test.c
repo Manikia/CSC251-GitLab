@@ -532,6 +532,7 @@ void monikawelcome(char name[])
 		}
 	}
 	printf("\n~Welcome %s to this minigame~\n\n", monikaname);
+	puts("MAKE SURE THE TERMINAL IS IN FULL SCREEN WHEN RUNNING CASE 15\n");
 }
 
 void monikacase1(char yellowdecision[])
@@ -719,7 +720,32 @@ void monikacase3(char greenchoice[])
 
 	if (strcmp(greenchoice, "y") == 0)
 	{
-		puts("yes option\n");
+		FILE *monikanothing;
+						
+		char filenothing[200] = "nothing.txt", nothingPrint;
+	
+	
+		// Open file
+		monikanothing = fopen(filenothing, "r");
+		if (monikanothing == NULL)
+		{
+			printf("Wrong file name, retry \n");
+			exit(0);
+		}
+	
+		// Read contents from file
+		nothingPrint = fgetc(monikanothing);
+		while (nothingPrint != EOF)
+		{
+			printf ("%c", nothingPrint);
+			nothingPrint = fgetc(monikanothing);
+		}
+
+		puts("\nyoure welcome\n");
+		fclose(monikanothing);
+		exit(1);
+
+
 	}
 	else if (strcmp(greenchoice, "n") == 0)
 	{
